@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+    <a class="navbar-brand" routerLink="/">
+        <h2>O</h2>
+    </a>
+    <a class="nav-link" routerLink="/shopping-cart">
+        Shopping Cart
+        <span class="badge badge-warning badge-pill">
+            {{ itemCount }}
+        </span>
+    </a>
+    <a *ngIf="!(isLoggedIn$ | async) as isLoggedIn" class="nav-link" routerLink="/login">Login</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault"
+        aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+
+    <div *ngIf="isLoggedIn$ | async as isLoggedIn" class="collapse navbar-collapse" id="navbarsExampleDefault">
+        <ul class="navbar-nav mr-auto">
+            <li ngbDropdown class="nav-item dropdown">
+                <a ngbDropdownToggle class="nav-link dropdown-toggle" id="dropdown01" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">{{ currentUser.userName }}</a>
+                <div ngbDropdownMenu class="dropdown-menu" aria-labelledby="dropdown01">
+                    <a ngbDropdownItem class="dropdown-item" routerLink="/my/orders">My Orders</a>
+                    <a *ngIf="(currentUser.isAdmin == 'True')" ngbDropdownItem class="dropdown-item"
+                        routerLink="/admin/orders">Manage Orders</a>
+                    <a *ngIf="(currentUser.isAdmin == 'True')" ngbDropdownItem class="dropdown-item"
+                        routerLink="/admin/products">Manage Products</a>
+                    <a *ngIf="(currentUser.isAdmin == 'True')" ngbDropdownItem class="dropdown-item"
+                        routerLink="/admin/categories">Manage Categories</a>
+                    <a routerLink="/login" (click)="onLogout()" ngbDropdownItem class="dropdown-item log-out">Log
+                        Out</a>
+                </div>
+            </li>
+        </ul>
+        <!-- <form class="form-inline my-2 my-lg-0">
+            <input class="form-control mr-sm-2" type="text" placeholder="Search" aria-label="Search">
+            <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        </form> -->
+    </div>
+</nav>

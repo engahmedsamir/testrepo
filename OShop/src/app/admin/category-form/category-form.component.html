@@ -1,0 +1,24 @@
+<div class="row">
+    <div class="col-md-6">
+        <form #f="ngForm" (ngSubmit)="save(f.value)">
+            <div class="form-group" hidden>
+                <label for="categoryId">Id</label>
+                <input #Id="ngModel" [(ngModel)]="category.Id" name="Id" type="text" id="categoryId"
+                    class="form-control" (value)="this.categoryId">
+            </div>
+            <div class="form-group">
+                <label for="title">Name</label>
+                <input #name="ngModel" [(ngModel)]="category.Name" name="Name" type="text" id="title"
+                    class="form-control" required minlength="3">
+                <div class="alert alert-danger" *ngIf="name.touched && name.invalid">
+                    <div *ngIf="name.errors.required">
+                        Name is required</div>
+                    <div *ngIf="name.errors.minlength">
+                        Name should be minimum {{ name.errors.minlength.requiredLength }} characters</div>
+                </div>
+            </div>
+            <button class="btn btn-primary">Save</button>
+            <button type="button" (click)="delete()" class="btn btn-danger">Delete</button>
+        </form>
+    </div>
+</div>

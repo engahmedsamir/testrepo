@@ -1,0 +1,39 @@
+<h1>Shopping Cart</h1>
+<ng-container>
+    <p>
+        You have {{ itemCount }} items in your shopping cart.
+        <button *ngIf="itemCount > 0" (click)="clearCart()" class="btn btn-light btn-sm">Clear Shopping
+            Cart</button>
+    </p>
+    <table class="table">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Product</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Total</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let i of cartItems">
+                <!-- <th><img class="thumbnail" [style.backgroundImage]="'url(' + i.ImageUrl + ')'"></th> -->
+                <th><img class="thumbnail" [src]="i.ImageUrl"></th>
+                <th>{{ i.ItemName }}</th>
+                <th>{{ i.QTY }}</th>
+                <th>{{ i.ItemPrice | currency:"USD":true }}</th>
+                <th>{{ (i.QTY * i.ItemPrice) | currency:"USD":true }}</th>
+            </tr>
+        </tbody>
+        <tfoot>
+            <tr>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th>{{ cartTotalPrice | currency:"USD":true }}</th>
+            </tr>
+        </tfoot>
+    </table>
+    <a *ngIf="itemCount > 0" routerLink="/check-out" class="btn btn-primary">Check Out</a>
+</ng-container>

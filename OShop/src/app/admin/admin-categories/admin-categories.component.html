@@ -1,0 +1,24 @@
+<a routerLink="/admin/categories/new" class="btn btn-primary">New Category</a>
+
+<p class="query">
+    <input #query (keyup)="filter(query.value)" type="text" class="form-control" placeholder="Search...">
+</p>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Name</th>
+            <th>No. of items</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let c of filteredCategories">
+            <td>{{ c.Name }}</td>
+            <td>{{ c.ItemsCount }}</td>
+            <td>
+                <a [routerLink]="['/admin/categories/', c.Id]">Edit</a>
+            </td>
+        </tr>
+    </tbody>
+</table>

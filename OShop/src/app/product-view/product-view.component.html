@@ -1,0 +1,37 @@
+<div class="row">
+    <div class="col-md-6">
+        <!-- <div class="form-group" hidden>
+            <label for="itemId">Id</label>
+            <input #Id="ngModel" [(ngModel)]="item.Id" name="Id" type="text" id="itemId" class="form-control"
+                (value)="this.itemId">
+        </div> -->
+        <div class="form-group">
+            <label for="title">Name</label>
+            <input #name="ngModel" [(ngModel)]="item.Name" name="Name" type="text" id="title" class="form-control"
+                disabled>
+        </div>
+        <div class="form-group">
+            <label for="price">Price</label>
+            <div class="input-group-prepend">
+                <span class="input-group-text">$</span>
+                <input #price="ngModel" [(ngModel)]="item.Price" name="Price" type="number" class="form-control"
+                    aria-label="Price" disabled>
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="category">Category</label>
+            <input #category="ngModel" [(ngModel)]="item.CategoryName" name="CategoryName" type="text"
+                class="form-control" aria-label="Category Name" disabled>
+        </div>
+        <a routerLink="/" class="btn btn-primary">Back</a>
+    </div>
+    <div class="col-md-6">
+        <div class="card" style="width: 18rem;">
+            <div class="card-body">
+                <h4 class="card-title">{{ item.Name }}</h4>
+                <h5 class="card-subtitle mb-2 text-muted">{{ item.Price | currency:'USD':true }}</h5>
+                <h6 class="card-subtitle mb-2 text-muted">{{ item.CategoryName }}</h6>
+            </div>
+        </div>
+    </div>
+</div>
